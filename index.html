@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Button đa năng</title>
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <style>
+        .button {
+            padding: 10px;
+            width: 200px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            font-family: Cambria, Cochin, Georgia, Times, "Times New Roman",
+                serif;
+            color: brown;
+            text-decoration: none;
+            background-color: aquamarine;
+            display: flex;
+            border-width: 2px;
+            border-color: black;
+            border-style: solid;
+            justify-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+    </style>
+    <body>
+        <div id="root"></div>
+    </body>
+
+    <script type="text/babel">
+
+        function Button({ title, href, onClick}) {
+            let Component = 'button'
+            let props = {}
+            // Nếu có truyền onClick
+            if(onClick) {
+                props.onClick = onClick
+            }
+            // Nếu truyền thẻ a
+            if(href) {
+                Component = 'a'
+                props.href = href
+            }
+
+            return (
+                <Component 
+                    className="button" {...props}
+                >{title}
+                </Component>
+            )
+        }
+        
+        function App() {
+            return (
+                <div className="wrapper">
+                    <Button
+                        title="Click me"
+                        href="https://www.facebook.com/hai.ho.52493499"
+                        onClick={() => {console.log(Math.random())}}
+                    />
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+</html>
